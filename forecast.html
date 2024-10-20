@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mossam Forecast</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="forecast.css">
+   
+</head>
+
+<body class="h-full bg-gradient-to-br from-blue-400 to-purple-500 transition-all duration-500">
+    <div class="container mx-auto px-4 py-8 max-w-6xl">
+        <header class="text-center mb-12">
+            <h1 class="text-5xl font-bold text-white mb-6 shadow-text">Mossam Forecast</h1>
+            <div class="relative max-w-md mx-auto">
+                <input type="search" id="citySearch" class="w-full px-6 py-3 rounded-full bg-white bg-opacity-20 text-white placeholder-white border-2 border-white focus:outline-none focus:ring-2 focus:ring-white text-lg" placeholder="Search for a city..." aria-label="Search for a city">
+                <button id="searchButton" class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white text-purple-500 px-6 py-2 rounded-full hover:bg-opacity-80 transition-colors duration-300 font-semibold">Search</button>
+            </div>
+        </header>
+
+        <nav class="mb-12 text-center">
+            <a href="index.html" class="text-white hover:text-blue-200 transition-colors duration-300 text-lg font-semibold underline mr-4">Back to Dashboard</a>
+            <button id="unitToggle" class="bg-white text-purple-500 px-4 py-2 rounded-full text-sm hover:bg-opacity-80 transition-colors duration-300 font-semibold mr-4">Switch to °F</button>
+            <button id="geolocateButton" class="bg-white text-purple-500 px-4 py-2 rounded-full text-sm hover:bg-opacity-80 transition-colors duration-300 font-semibold">Use My Location</button>
+        </nav>
+
+        <div id="loadingSpinner" class="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-50" style="display: none;">
+            <div class="spinner" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+
+        <main class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <section class="lg:col-span-2 glass-effect rounded-2xl p-8 text-white fade-in shadow-lg">
+                <h2 class="text-3xl font-semibold mb-6">Next Five Days Forecast</h2>
+                <div id="forecastTable" class="overflow-x-auto">
+                    <!-- Table will be populated here -->
+                </div>
+                <div class="mt-6 flex justify-between items-center">
+                    <button id="prevPage" class="bg-white text-purple-500 px-4 py-2 rounded-full text-sm hover:bg-opacity-80 transition-colors duration-300 font-semibold">Previous</button>
+                    <span id="pageInfo" class="text-sm font-semibold"></span>
+                    <button id="nextPage" class="bg-white text-purple-500 px-4 py-2 rounded-full text-sm hover:bg-opacity-80 transition-colors duration-300 font-semibold">Next</button>
+                </div>
+            </section>
+
+            <section class="glass-effect rounded-xl p-8 text-white fade-in shadow-lg flex flex-col h-full w-380 max-w-4xl mx-auto ">
+                <h2 class="text-3xl font-semibold mb-6">Mossam AI</h2>
+               
+                <div class="flex-grow bg-white bg-opacity-10 rounded-lg p-4 overflow-y-auto mb-4 max-h-160" id="chatbox">
+                    <div id="answerArea"></div>
+                </div>
+                <div class="flex items-center w-full">
+                    <div class="flex flex-grow w-full space-x-2" id="chatArea">
+                        <input id="userMessage" type="text" placeholder="Ask about the weather..." class="flex-grow p-3 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent text-gray-800" aria-label="Ask about the weather">
+                        <button id="sendButton" class="bg-white text-purple-500 px-6 py-3 rounded-r-lg hover:bg-opacity-80 transition-colors duration-300 font-semibold">Send</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "@google/generative-ai": "https://esm.run/@google/generative-ai"
+            }
+        }
+    </script>
+    <script type="text/javascript" src="config.js"></script>
+    <script type="module" src="forecast.js"></script>
+</body>
+
+</html>
