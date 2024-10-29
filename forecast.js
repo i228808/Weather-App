@@ -1,7 +1,6 @@
-
 import {GoogleGenerativeAI} from "@google/generative-ai";
 
-const API_KEY = API.OPENAPI;
+const API_KEY = process.env.OPENAPI;
 const DEFAULT_CITY = 'Islamabad';
 let currentPage = 1;
 let totalPages = 1;
@@ -18,7 +17,7 @@ const weatherConditions = {
     Mist: { icon: '🌫️' }
 };
 
-const genAI = new GoogleGenerativeAI(API.GOOGLEAPI);
+const genAI = new GoogleGenerativeAI(process.env.GOOGLEAPI);
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
 
 function showSpinner() {

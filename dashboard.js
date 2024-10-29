@@ -1,5 +1,4 @@
-
-const API_KEY = API.OPENAPI;
+const API_KEY = process.env.OPENAPI;
 const DEFAULT_CITY = 'Islamabad';
 
 let temperatureChart, precipitationChart, windChart, weatherSummaryChart;
